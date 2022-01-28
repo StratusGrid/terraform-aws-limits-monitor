@@ -1,12 +1,12 @@
-resource "aws_iam_role" "example_resource" {
-  name               = var.name // <= You may need to append to the name string in a name field to avoid conflicts
-  assume_role_policy = <<EOF
-{
-   "Version": "2012-10-17",
-   "Statement": [
-   ]
-}
-EOF
-
-  tags = local.tags // <= Note the use of local.tags
+resource "aws_cloudformation_stack" "limit-monitor" {
+  name = "limit-monitor"
+  tags = local.common_tags
+  parameters = {
+    AccountList  = var.accountlist
+    SNSEmail     = var.email
+    SlackChannel = var.slackchannel
+    SlackHookURL = var.slackhookurl
+  }
+  capabilities = ["CAPABILITY_IAM"]
+  template_url = "https://s3.amazonaws.com/solutions-reference/limit-monitor/latest/limit-monitor.template"
 }
