@@ -13,7 +13,7 @@ module "aws_limits" {
   source  = "StratusGrid/limits-monitor/aws"
   version = "1.0.1"
 
-  email      = "team@example.com" #The Email you want to receive alerts at
+  email      = "team@example.com" # The Email you want to receive alerts at
   input_tags = merge(local.common_tags, {}) # Module input tags
 }
 ```
@@ -43,7 +43,7 @@ module "aws_limits" {
   enable_slack = true
 
   # Backup Email Support - This is required
-  SNSEmail = "group@example.com"
+  email = "group@example.com" # The Email you want to receive alerts at
 
   # Slack Config SSM Parameter Values
   SlackHookURL = aws_ssm_parameter.slack_webhook.name
