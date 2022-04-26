@@ -39,9 +39,6 @@ module "aws_limits" {
   source  = "StratusGrid/limits-monitor/aws"
   version = "1.0.1"
 
-  # Bool to enable Slack Support
-  enable_slack = true
-
   # Backup Email Support - This is required
   email = "group@example.com" # The Email you want to receive alerts at
 
@@ -65,7 +62,6 @@ module "aws_limits" {
 
 | Name | Type |
 |------|------|
-| [aws_cloudformation_stack.limit_monitor_email](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) | resource |
 | [aws_cloudformation_stack.limit_monitor_slack](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) | resource |
 
 ## Inputs
@@ -74,7 +70,6 @@ module "aws_limits" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_accountlist"></a> [accountlist](#input\_accountlist) | List of comma-separated and double-quoted account numbers to monitor. If you leave this parameter blank, the solution will only monitor limits in the primary account. If you enter multiple secondary account IDs, you must also provide the primary account ID in this parameter. | `string` | `""` | no |
 | <a name="input_email"></a> [email](#input\_email) | The email address to subscribe for SNS limit alert messages, leave blank if SNS alerts not needed. | `string` | `""` | no |
-| <a name="input_enable_slack"></a> [enable\_slack](#input\_enable\_slack) | A True/False Boolean on if Slack Alerts should be enabled | `bool` | `false` | no |
 | <a name="input_input_tags"></a> [input\_tags](#input\_input\_tags) | Map of tags to apply to resources | `map(string)` | <pre>{<br>  "Developer": "StratusGrid",<br>  "Provisioner": "Terraform"<br>}</pre> | no |
 | <a name="input_slackchannel"></a> [slackchannel](#input\_slackchannel) | SSM parameter key for the Slack channel. Leave blank if you do not wish to receive Slack notifications. | `string` | `""` | no |
 | <a name="input_slackhookurl"></a> [slackhookurl](#input\_slackhookurl) | SSM parameter key for incoming Slack web hook URL. Leave blank if you do not wish to receive Slack notifications. | `string` | `""` | no |

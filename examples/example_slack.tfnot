@@ -17,9 +17,6 @@ module "aws_limits" {
   source  = "StratusGrid/limits-monitor/aws"
   version = "1.0.1"
 
-  # Bool to enable Slack Support
-  enable_slack = true
-
   # Backup Email Support - This is required
   email = "group@example.com" # The Email you want to receive alerts at
 
