@@ -1,5 +1,5 @@
 # Email Only
-resource "aws_cloudformation_stack" "limit-monitor" {
+resource "aws_cloudformation_stack" "limit_monitor_email" {
   count = var.enable_slack == false ? 1 : 0
 
   name = "limit-monitor"
@@ -13,7 +13,7 @@ resource "aws_cloudformation_stack" "limit-monitor" {
 }
 
 # Slack Only
-resource "aws_cloudformation_stack" "limit-monitor" {
+resource "aws_cloudformation_stack" "limit_monitor_slack" {
   count = var.enable_slack == true ? 1 : 0
 
   name = "limit-monitor"
