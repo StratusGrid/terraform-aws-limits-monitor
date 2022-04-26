@@ -7,7 +7,7 @@ Terraform module to deploy the [AWS Limit Monitor Solution](https://github.com/a
 
 # Example - Email
 ```hcl
-module "aws-limits" {
+module "aws_limits" {
   source  = "StratusGrid/limits-monitor/aws"
   version = "1.0.1"
 
@@ -16,7 +16,7 @@ module "aws-limits" {
 }
 ```
 
-# Example - Email
+# Example - Slack
 ```hcl
 # https://api.slack.com/messaging/webhooks
 resource "aws_ssm_parameter" "slack_webhook" {
@@ -33,7 +33,7 @@ resource "aws_ssm_parameter" "slack_channel_key" {
   overwrite = true
 }
 
-module "aws-limits" {
+module "aws_limits" {
   source  = "StratusGrid/limits-monitor/aws"
   version = "1.0.1"
 

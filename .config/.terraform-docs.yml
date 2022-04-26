@@ -16,7 +16,7 @@ content: |-
   {{ include "examples/example_email.tfnot" }}
   ```
 
-  # Example - Email
+  # Example - Slack
   ```hcl
   {{ include "examples/example_slack.tfnot" }}
   ```
