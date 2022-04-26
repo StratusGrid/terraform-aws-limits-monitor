@@ -11,6 +11,8 @@ content: |-
 
   [Documentation](https://aws.amazon.com/solutions/implementations/limit-monitor/)
 
+  <span style="color:red">Note:</span> If you do the email subscription you will be required to confirm your subscription via email.
+
   # Example - Email
   ```hcl
   {{ include "examples/example_email.tfnot" }}

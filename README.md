@@ -5,6 +5,8 @@ Terraform module to deploy the [AWS Limit Monitor Solution](https://github.com/a
 
 [Documentation](https://aws.amazon.com/solutions/implementations/limit-monitor/)
 
+<span style="color:red">Note:</span> If you do the email subscription you will be required to confirm your subscription via email.
+
 # Example - Email
 ```hcl
 module "aws_limits" {
