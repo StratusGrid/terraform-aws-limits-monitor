@@ -42,6 +42,9 @@ module "aws_limits" {
   # Bool to enable Slack Support
   enable_slack = true
 
+  # Backup Email Support - This is required
+  SNSEmail = "group@example.com"
+
   # Slack Config SSM Parameter Values
   SlackHookURL = aws_ssm_parameter.slack_webhook.name
   SlackChannel = aws_ssm_parameter.slack_channel_key.name
@@ -62,7 +65,8 @@ module "aws_limits" {
 
 | Name | Type |
 |------|------|
-| [aws_cloudformation_stack.limit-monitor](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) | resource |
+| [aws_cloudformation_stack.limit_monitor_email](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) | resource |
+| [aws_cloudformation_stack.limit_monitor_slack](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) | resource |
 
 ## Inputs
 

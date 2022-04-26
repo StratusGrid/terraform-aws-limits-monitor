@@ -20,6 +20,7 @@ resource "aws_cloudformation_stack" "limit_monitor_slack" {
   tags = local.common_tags
   parameters = {
     AccountList  = var.accountlist
+    SNSEmail    = var.email
     SlackChannel = var.slackchannel
     SlackHookURL = var.slackhookurl
   }

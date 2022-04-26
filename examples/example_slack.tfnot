@@ -20,6 +20,9 @@ module "aws_limits" {
   # Bool to enable Slack Support
   enable_slack = true
 
+  # Backup Email Support - This is required
+  SNSEmail = "group@example.com"
+
   # Slack Config SSM Parameter Values
   SlackHookURL = aws_ssm_parameter.slack_webhook.name
   SlackChannel = aws_ssm_parameter.slack_channel_key.name
