@@ -10,6 +10,12 @@ variable "accountlist" {
   default     = ""
 }
 
+variable "enable_slack" {
+  description = "A True/False Boolean on if Slack Alerts should be enabled"
+  type        = bool
+  default     = false
+}
+
 variable "slackhookurl" {
   description = "SSM parameter key for incoming Slack web hook URL. Leave blank if you do not wish to receive Slack notifications."
   type        = string
