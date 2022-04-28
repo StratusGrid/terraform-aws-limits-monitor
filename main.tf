@@ -1,4 +1,4 @@
-resource "aws_cloudformation_stack" "limit-monitor" {
+resource "aws_cloudformation_stack" "limit_monitor_slack" {
   name = "limit-monitor"
   tags = local.common_tags
   parameters = {

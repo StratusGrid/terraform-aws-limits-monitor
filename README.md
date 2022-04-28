@@ -1,16 +1,56 @@
+<!-- BEGIN_TF_DOCS -->
 # AWS Limit Monitor
+
 Terraform module to deploy the [AWS Limit Monitor Solution](https://github.com/aws-solutions/aws-limit-monitor) for monitoring AWS service limits. It monitors limits across services supported by Amazon Trusted Advisor; in multiple regions and multiple AWS accounts. The solution integrates with Amazon SNS and Slack to notify customers for service limits approaching thresholds.
 
 [Documentation](https://aws.amazon.com/solutions/implementations/limit-monitor/)
 
-## Example
-```
-module "aws-limits" {
-  source     = "github.com/StratusGrid/terraform-aws-limits-monitor"
-  email      = "team@example.com"
-  input_tags = local.common_tags
+<span style="color:red">Note:</span> If you do the email subscription you will be required to confirm your subscription via email.
+
+# Example - Email
+```hcl
+module "aws_limits" {
+  source  = "StratusGrid/limits-monitor/aws"
+  version = "1.0.1"
+
+  email      = "team@example.com" # The Email you want to receive alerts at
+  input_tags = merge(local.common_tags, {}) # Module input tags
 }
 ```
+
+# Example - Slack
+```hcl
+# https://api.slack.com/messaging/webhooks
+resource "aws_ssm_parameter" "slack_webhook" {
+  name      = "/${var.env_name}/${var.name_prefix}/service-limits/slack_webhook"
+  type      = "String"
+  value     = "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+  overwrite = true
+}
+
+resource "aws_ssm_parameter" "slack_channel_key" {
+  name      = "/${var.env_name}/${var.name_prefix}/service-limits/slack_channel_key"
+  type      = "String"
+  value     = "mychannelname" # Channel Name without the # https://docs.aws.amazon.com/solutions/latest/limit-monitor/deployment.html#step3
+  overwrite = true
+}
+
+module "aws_limits" {
+  source  = "StratusGrid/limits-monitor/aws"
+  version = "1.0.1"
+
+  # Backup Email Support - This is required
+  email = "group@example.com" # The Email you want to receive alerts at
+
+  # Slack Config SSM Parameter Values
+  SlackHookURL = aws_ssm_parameter.slack_webhook.name
+  SlackChannel = aws_ssm_parameter.slack_channel_key.name
+
+  input_tags = merge(local.common_tags, {}) # Module input tags
+}
+```
+
+---
 
 ## Requirements
 
@@ -18,17 +58,11 @@ module "aws-limits" {
 |------|---------|
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.72 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.72.0 |
-
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_cloudformation_stack.limit-monitor](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) | resource |
+| [aws_cloudformation_stack.limit_monitor_slack](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) | resource |
 
 ## Inputs
 
@@ -43,3 +77,12 @@ module "aws-limits" {
 ## Outputs
 
 No outputs.
+
+---
+
+## Contributors
+- Borja Lopez [StratusChris](https://github.com/borjalopez-sg)
+- Wesley Kirkland [wesleykirklandsg](https://github.com/wesleykirklandsg)
+
+Note, manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
+<!-- END_TF_DOCS -->
