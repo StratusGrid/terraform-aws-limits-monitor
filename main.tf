@@ -1,6 +1,6 @@
 resource "aws_cloudformation_stack" "limit_monitor_slack" {
   name = "limit-monitor"
-  tags = local.common_tags
+  tags = var.input_tags
   parameters = {
     AccountList  = var.accountlist
     SNSEmail     = var.email
