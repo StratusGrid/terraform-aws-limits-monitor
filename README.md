@@ -11,7 +11,7 @@ Terraform module to deploy the [AWS Limit Monitor Solution](https://github.com/a
 ```hcl
 module "aws_limits" {
   source  = "StratusGrid/limits-monitor/aws"
-  version = "1.0.1"
+  version = "1.0.2"
 
   email      = "team@example.com" # The Email you want to receive alerts at
   input_tags = merge(local.common_tags, {}) # Module input tags
@@ -37,7 +37,7 @@ resource "aws_ssm_parameter" "slack_channel_key" {
 
 module "aws_limits" {
   source  = "StratusGrid/limits-monitor/aws"
-  version = "1.0.1"
+  version = "1.0.2"
 
   # Backup Email Support - This is required
   email = "group@example.com" # The Email you want to receive alerts at
