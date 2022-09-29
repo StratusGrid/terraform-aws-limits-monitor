@@ -1,5 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
-# AWS Limit Monitor
+# terraform-aws-limits-monitor
+
+GitHub: [StratusGrid/terraform-aws-limits-monitor](https://github.com/StratusGrid/terraform-aws-limits-monitor)
 
 Terraform module to deploy the [AWS Limit Monitor Solution](https://github.com/aws-solutions/aws-limit-monitor) for monitoring AWS service limits. It monitors limits across services supported by Amazon Trusted Advisor; in multiple regions and multiple AWS accounts. The solution integrates with Amazon SNS and Slack to notify customers for service limits approaching thresholds.
 
@@ -7,7 +9,7 @@ Terraform module to deploy the [AWS Limit Monitor Solution](https://github.com/a
 
 <span style="color:red">Note:</span> If you do the email subscription you will be required to confirm your subscription via email.
 
-# Example - Email
+## Example - Email
 ```hcl
 module "aws_limits" {
   source  = "StratusGrid/limits-monitor/aws"
@@ -18,7 +20,7 @@ module "aws_limits" {
 }
 ```
 
-# Example - Slack
+## Example - Slack
 ```hcl
 # https://api.slack.com/messaging/webhooks
 resource "aws_ssm_parameter" "slack_webhook" {
@@ -84,5 +86,5 @@ No outputs.
 - Borja Lopez [StratusChris](https://github.com/borjalopez-sg)
 - Wesley Kirkland [wesleykirklandsg](https://github.com/wesleykirklandsg)
 
-Note, manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
+<span style="color:red">Note:</span> Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
 <!-- END_TF_DOCS -->
